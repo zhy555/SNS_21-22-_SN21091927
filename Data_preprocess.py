@@ -70,10 +70,11 @@ Q1 = np.quantile(lst_perprice,0.25,interpolation='lower') # Q1 = 0.25
 Q3 = np.quantile(lst_perprice,0.75,interpolation='lower') # Q3 = 0.75
 Q1 = float(Q1)
 Q3 = float(Q3)
+print(Q1,Q3)
 IQR = Q3 - Q1 # IQR
 Q1 = Q1 - 0.5 * IQR # low outlier
 Q3 = Q3 + 1.5 * IQR  # high outlier
-print(Q1,Q3)
+
 
 with open(output_path, 'w', newline='') as csvfile:
     writer = csv.writer(csvfile)
@@ -100,4 +101,4 @@ for row in lst:
         dict_perprice[int(row[1])].append((float(row[0])))
 for year in dict_perprice.keys():
     dict_perprice[year] = np.mean(dict_perprice[year])
-print(dict_perprice)
+#print(dict_perprice)

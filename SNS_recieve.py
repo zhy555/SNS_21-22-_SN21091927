@@ -22,6 +22,7 @@ def CNN_predict():
 
     # input from keyboard
     input_X = []
+    print('Hi, I am the Oracle, I can estimate the price per square of London house')
     print('What is the year when the sale of house to be completed?')
     input_X.append(int(input()))
     print('What is the type of the proper? 0: Terraced, 1: Semi-Detached, 2: Flats, 3: Detached')
@@ -85,24 +86,24 @@ def CNN_predict():
     X_train_copy = X_train
 
     # ----------------------------LinearRegression model----------------------------
-    # model_LR = LinearRegression(normalize=True)
-    # model_LR.fit(X_train,Y_train)
+    model_LR = LinearRegression(normalize=True)
+    model_LR.fit(X_train,Y_train)
 
     # intercept of model
-    # print(model_LR.intercept_)
+    print(model_LR.intercept_)
     # coeffcients of model
-    # coeffcients_LR = pd.DataFrame([X_train.columns,model_LR.coef_]).T
-    # coeffcients_LR = coeffcients_LR.rename(columns={0:'Attribute',1:'Coeffcients'})
-    # print(coeffcients_LR)
+    coeffcients_LR = pd.DataFrame([X_train.columns,model_LR.coef_]).T
+    coeffcients_LR = coeffcients_LR.rename(columns={0:'Attribute',1:'Coeffcients'})
+    print(coeffcients_LR)
 
     # ------------------------------Lasso--------------------------------------------
-    # model_Lasso = LassoCV()
-    # model_Lasso.fit(X_train,Y_train)
-    # alpha = model_Lasso.alpha_
-    # print('Best alpha from LassoCV: ' + str(alpha))
+    model_Lasso = LassoCV()
+    model_Lasso.fit(X_train,Y_train)
+    alpha = model_Lasso.alpha_
+    print('Best alpha from LassoCV: ' + str(alpha))
 
-    # model_Lasso = Lasso(alpha)
-    # model_Lasso.fit(X_train,Y_train)
+    model_Lasso = Lasso(alpha)
+    model_Lasso.fit(X_train,Y_train)
 
     # --------------------------------ANN--------------------------------------------
     def normalize_CNN(x):
